@@ -10,6 +10,8 @@ export class CarConfigComponent implements OnInit {
   isLinear = true;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+  color = 'white';
+  wheels = 'white';
 
   constructor(private _formBuilder: FormBuilder) { }
 

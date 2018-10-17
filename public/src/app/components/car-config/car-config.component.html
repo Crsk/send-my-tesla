@@ -3,7 +3,11 @@
     <form [formGroup]="firstFormGroup" (ngSubmit)="form1()" #formone="ngForm">
       <ng-template matStepLabel>Color</ng-template>
       <mat-form-field>
-        <input matInput placeholder="Color" formControlName="firstCtrl" required>
+        <mat-select [(value)]="color" placeholder="Color" formControlName="firstCtrl" required>
+          <mat-option value="white">White</mat-option>
+          <mat-option value="red">Red</mat-option>
+          <mat-option value="black">Black</mat-option>
+        </mat-select>
       </mat-form-field>
       <div>
         <button type="button" mat-button matStepperNext>Next</button>
@@ -14,7 +18,11 @@
     <form [formGroup]="secondFormGroup" (ngSubmit)="form2()" #formtwo="ngForm">
       <ng-template matStepLabel>Wheels</ng-template>
       <mat-form-field>
-        <input matInput placeholder="Wheels" formControlName="secondCtrl" required>
+        <mat-select [(value)]="wheels" placeholder="Wheels" formControlName="secondCtrl" required>
+          <mat-option value="white">White</mat-option>
+          <mat-option value="red">Red</mat-option>
+          <mat-option value="black">Black</mat-option>
+        </mat-select>
       </mat-form-field>
       <div>
         <button type="button" mat-button matStepperPrevious>Back</button>

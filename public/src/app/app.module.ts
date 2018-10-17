@@ -20,6 +20,7 @@ import { DispatchComponent } from './components/dispatch/dispatch.component';
 import { HomeComponent } from './home/home.component';
 import { CarConfigComponent } from './components/car-config/car-config.component';
 import { MatStepperModule, MatInputModule, MatAutocompleteModule } from '@angular/material';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { MatStepperModule, MatInputModule, MatAutocompleteModule } from '@angula
     MatIconModule,
     MatStepperModule,
     MatInputModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatSelectModule
   ],
   providers: [CarService],
   bootstrap: [AppComponent]
