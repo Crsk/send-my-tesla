@@ -1,0 +1,36 @@
+<mat-horizontal-stepper [linear]="isLinear" #stepper="matHorizontalStepper">
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup" (ngSubmit)="form1()" #formone="ngForm">
+      <ng-template matStepLabel>Color</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Color" formControlName="firstCtrl" required>
+      </mat-form-field>
+      <div>
+        <button type="button" mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup" (ngSubmit)="form2()" #formtwo="ngForm">
+      <ng-template matStepLabel>Wheels</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Wheels" formControlName="secondCtrl" required>
+      </mat-form-field>
+      <div>
+        <button type="button" mat-button matStepperPrevious>Back</button>
+        <button type="button" mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    You are now done.
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button type="button" (click)="stepper.reset()">Reset</button>
+      <button mat-button type="button" (click)="formone.ngSubmit.emit();formtwo.ngSubmit.emit()">
+        submit
+      </button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>

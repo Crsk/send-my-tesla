@@ -21,9 +21,10 @@ namespace SendMyTesla.Controllers
 
         // GET api/cars/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public Cars Get(int id)
         {
-            return "value";
+            var db = new MyteslaContext();
+            return db.Cars.ToList().Where(x => x.Id == id).FirstOrDefault();
         }
 
         // POST api/cars

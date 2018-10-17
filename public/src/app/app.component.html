@@ -1,9 +1,9 @@
 <app-navbar (boolEvent)="receiveBool($event)"></app-navbar>
 <mat-drawer-container autosize>
-  <mat-drawer #sidenav class="sidenav" mode="side">
+  <mat-drawer #sidenav class="sidenav" mode="over">
     <div id="side-content">
       <div *ngFor="let item of routes">
-        <button mat-button [routerLinkActive]="['clicked']" [routerLink]="item.url">{{item.linkName}}</button>
+        <button mat-button [routerLinkActive]="['clicked']" [routerLink]="item.url" (click)="close()">{{item.linkName}}</button>
       </div>
     </div>
   </mat-drawer>

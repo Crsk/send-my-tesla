@@ -1,4 +1,4 @@
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CarService } from './services/car.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -18,6 +18,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { ConfigComponent } from './components/config/config.component';
 import { DispatchComponent } from './components/dispatch/dispatch.component';
 import { HomeComponent } from './home/home.component';
+import { CarConfigComponent } from './components/car-config/car-config.component';
+import { MatStepperModule, MatInputModule, MatAutocompleteModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -26,10 +28,12 @@ import { HomeComponent } from './home/home.component';
     NavbarComponent,
     ConfigComponent,
     DispatchComponent,
-    HomeComponent
+    HomeComponent,
+    CarConfigComponent
   ],
   imports: [
     FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -37,7 +41,10 @@ import { HomeComponent } from './home/home.component';
     MatButtonModule,
     MatSidenavModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    MatStepperModule,
+    MatInputModule,
+    MatAutocompleteModule
   ],
   providers: [CarService],
   bootstrap: [AppComponent]

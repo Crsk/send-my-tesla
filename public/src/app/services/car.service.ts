@@ -10,4 +10,8 @@ export class CarService {
   getCars() {
     return this.http.get<Car[]>(environment.serverUrl + '/api/cars');
   }
+
+  getCar(id) {
+    return this.http.get<Car>(environment.serverUrl + '/api/cars/' + id);
+  }
 }

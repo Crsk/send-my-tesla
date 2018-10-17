@@ -5,7 +5,7 @@
   <div *ngFor="let car of cars">
     <div class="row">
       <div class="col-sm-12">
-        <button mat-button class="mb-5 pt-5">
+        <button mat-button class="mb-5 pt-5" [routerLink]="['/config', car.id]">
           <div>
             <h3>{{car.model}}</h3>
           </div>

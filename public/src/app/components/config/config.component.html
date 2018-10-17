@@ -1,3 +1,6 @@
-<p>
-  config works!
-</p>
+<div *ngIf="car != null" class="pt-5">
+  <h1 class="pt-5">{{car.model}}</h1>
+  <img src="../../../assets/{{car?.image}}">
+
+  <app-car-config></app-car-config>
+</div>

@@ -30,4 +30,8 @@ export class AppComponent implements OnInit {
     this.bool = $event;
     this.sidenav.toggle();
   }
+
+  close() {
+    this.sidenav.toggle();
+  }
 }
