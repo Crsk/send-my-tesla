@@ -1,0 +1,17 @@
+.sidenav {
+    padding: 20px;
+    margin-top: 56px;
+    width: 130px;
+}
+
+#side-content {
+    position: fixed;
+}
+
+.sidenav-content {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    text-align: center;
+    color: #121212;
+}

@@ -16,7 +16,7 @@ namespace SendMyTesla.Controllers
         public List<Cars> Get()
         {
             var db = new MyteslaContext();
-            return db.Cars.ToList();
+            return db.Cars.ToList().OrderBy(x => x.Index).Reverse().ToList();
         }
 
         // GET api/cars/5

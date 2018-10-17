@@ -1,4 +1,17 @@
-<ul *ngFor="let car of cars">
-  <li>{{ car.model }}</li>
-  <li>{{ car.basePrice }}</li>
-</ul>
+<div class="container pt-5">
+  <div class="pt-5 pb-5">
+    <h1>Choose a Car</h1>
+  </div>
+  <div *ngFor="let car of cars">
+    <div class="row">
+      <div class="col-sm-12">
+        <button mat-button class="mb-5 pt-5">
+          <div>
+            <h3>{{car.model}}</h3>
+          </div>
+          <img src="../../../assets/{{car.image}}" class="img-responsive mb-5">
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

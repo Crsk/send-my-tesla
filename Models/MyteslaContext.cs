@@ -51,6 +51,16 @@ namespace SendMyTesla.Models
                     .HasColumnName("model")
                     .HasColumnType("varchar(15)")
                     .HasDefaultValueSql("''");
+                entity.Property(e => e.Image)
+                    .IsRequired()
+                    .HasColumnName("image")
+                    .HasColumnType("varchar(100)")
+                    .HasDefaultValueSql("''");
+                entity.Property(e => e.Index)
+                    .IsRequired()
+                    .HasColumnName("index")
+                    .HasColumnType("int(11)")
+                    .HasDefaultValueSql("'0'");
             });
 
             modelBuilder.Entity<Clients>(entity =>

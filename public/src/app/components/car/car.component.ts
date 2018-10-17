@@ -8,11 +8,12 @@ import { Car } from '../../models/Car';
   styleUrls: ['./car.component.css']
 })
 export class CarComponent implements OnInit {
-  public cars : Car[];
+  public cars: Car[];
 
-  constructor(private carService : CarService) { }
+  constructor(private carService: CarService) { }
 
   ngOnInit() {
+    this.getCars();
   }
 
   getCars() {

@@ -26,7 +26,8 @@ namespace SendMyTesla
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddCors();
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+                builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,10 +41,7 @@ namespace SendMyTesla
             {
                 app.UseHsts();
             }
-
-            app.UseCors(options => 
-                options.WithOrigins("http://localhost:4200").AllowAnyMethod());
-
+            app.UseCors("MyPolicy");
             app.UseHttpsRedirection();
             app.UseMvc();
         }

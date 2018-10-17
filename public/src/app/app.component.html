@@ -1,3 +1,13 @@
-<button mat-button>Click me!</button>
-
-<router-outlet></router-outlet>
+<app-navbar (boolEvent)="receiveBool($event)"></app-navbar>
+<mat-drawer-container autosize>
+  <mat-drawer #sidenav class="sidenav" mode="side">
+    <div id="side-content">
+      <div *ngFor="let item of routes">
+        <button mat-button [routerLinkActive]="['clicked']" [routerLink]="item.url">{{item.linkName}}</button>
+      </div>
+    </div>
+  </mat-drawer>
+  <div class="sidenav-content">
+    <router-outlet></router-outlet>
+  </div>
+</mat-drawer-container>

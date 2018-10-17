@@ -14,6 +14,8 @@ namespace SendMyTesla.Models
         public int Id { get; set; }
         public string Model { get; set; }
         public int? BasePrice { get; set; }
+        public string Image { get; set; }
+        public int Index { get; set; }
 
         public ICollection<Orders> Orders { get; set; }
         public ICollection<Parts> Parts { get; set; }
