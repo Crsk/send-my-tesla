@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using SendMyTesla.Config;
 
 namespace SendMyTesla.Models
 {
@@ -26,7 +27,7 @@ namespace SendMyTesla.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseMySql("Server=localhost;Database=mytesla;User=root;Pwd=MyTempPass.12;");
+                optionsBuilder.UseMySql($"Server=localhost;Database=mytesla;User=root;Pwd={Credentials.DB_PASSWORD}");
             }
         }
 
