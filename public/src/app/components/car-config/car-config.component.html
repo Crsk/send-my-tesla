@@ -1,44 +1,37 @@
-<mat-horizontal-stepper [linear]="isLinear" #stepper="matHorizontalStepper">
+<mat-horizontal-stepper [linear]="isLinear" #stepper="matHorizontalStepper" class="pb-5 mb-5">
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup" (ngSubmit)="form1()" #formone="ngForm">
       <ng-template matStepLabel>Color</ng-template>
       <mat-form-field>
-        <mat-select [(value)]="color" placeholder="Color" formControlName="firstCtrl" required>
-          <mat-option value="white">White</mat-option>
-          <mat-option value="red">Red</mat-option>
-          <mat-option value="black">Black</mat-option>
+        <mat-select placeholder="Exterior" formControlName="firstCtrl" required>
+          <mat-option value="{{exterior.code}}" *ngFor="let exterior of exteriorList" (onSelectionChange)="onExtChange($event, exterior)">{{exterior.description}}</mat-option>
         </mat-select>
       </mat-form-field>
-      <div>
-        <button type="button" mat-button matStepperNext>Next</button>
-      </div>
+      <span *ngIf="selectedExterior != null" class="pl-3"> {{selectedExterior?.price | currency:'USD'}}</span>
     </form>
   </mat-step>
   <mat-step [stepControl]="secondFormGroup">
     <form [formGroup]="secondFormGroup" (ngSubmit)="form2()" #formtwo="ngForm">
       <ng-template matStepLabel>Wheels</ng-template>
       <mat-form-field>
-        <mat-select [(value)]="wheels" placeholder="Wheels" formControlName="secondCtrl" required>
-          <mat-option value="white">White</mat-option>
-          <mat-option value="red">Red</mat-option>
-          <mat-option value="black">Black</mat-option>
+        <mat-select placeholder="Wheels" formControlName="secondCtrl" required>
+          <mat-option value="{{wheel.code}}" *ngFor="let wheel of wheelList" (onSelectionChange)="onWheChange($event, wheel)">{{wheel.description}}</mat-option>
         </mat-select>
       </mat-form-field>
-      <div>
-        <button type="button" mat-button matStepperPrevious>Back</button>
-        <button type="button" mat-button matStepperNext>Next</button>
-      </div>
+      <span *ngIf="selectedWheel != null" class="pl-3"> {{selectedWheel.price | currency:'USD'}}</span>
     </form>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Done</ng-template>
-    You are now done.
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button type="button" (click)="stepper.reset()">Reset</button>
-      <button mat-button type="button" (click)="formone.ngSubmit.emit();formtwo.ngSubmit.emit()">
-        submit
-      </button>
-    </div>
+    <p>Tesla {{selectedCar?.model}}: {{selectedCar?.basePrice | currency:'USD'}}</p>
+    <p>Exterior: {{selectedExterior?.price | currency:'USD'}}</p>
+    <p>Wheels: {{selectedWheel?.price | currency:'USD'}}</p>
+    <p>Total: {{selectedCar?.basePrice*1 + selectedExterior?.price*1 + selectedWheel?.price*1 | currency:'USD'}}</p>
+    <mat-form-field class="form-full-width">
+      <input matInput placeholder="Dispatch Address" autocomplete="off" #address>
+    </mat-form-field>
+    <button mat-button class="pl-5 pr-5 tp-2 pb-2" (click)="send(address.value, selectedExterior?.id, selectedWheel?.id)">
+      <i class="fa fa-send fa-2x"></i>
+    </button>
   </mat-step>
 </mat-horizontal-stepper>

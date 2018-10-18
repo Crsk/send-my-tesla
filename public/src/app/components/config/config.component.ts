@@ -19,14 +19,11 @@ export class ConfigComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
        this.id = +params['id'];
-       this.carService.getCar(this.id).subscribe(car => {
-         this.car = car;
-       });
+       this.carService.getCar(this.id).subscribe(car => this.car = car);
     });
   }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
-
 }

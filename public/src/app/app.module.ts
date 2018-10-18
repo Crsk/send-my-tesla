@@ -1,3 +1,4 @@
+import { DispatchService } from './services/dispatch.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CarService } from './services/car.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -21,6 +22,8 @@ import { HomeComponent } from './home/home.component';
 import { CarConfigComponent } from './components/car-config/car-config.component';
 import { MatStepperModule, MatInputModule, MatAutocompleteModule } from '@angular/material';
 import { MatSelectModule } from '@angular/material/select';
+import { OptionService } from './services/option.service';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,8 @@ import { MatSelectModule } from '@angular/material/select';
     ConfigComponent,
     DispatchComponent,
     HomeComponent,
-    CarConfigComponent
+    CarConfigComponent,
+    FooterComponent
   ],
   imports: [
     FormsModule,
@@ -48,7 +52,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatAutocompleteModule,
     MatSelectModule
   ],
-  providers: [CarService],
+  providers: [CarService, OptionService, DispatchService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
