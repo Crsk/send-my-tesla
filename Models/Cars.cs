@@ -8,7 +8,6 @@ namespace SendMyTesla.Models
         public Cars()
         {
             Orders = new HashSet<Orders>();
-            Parts = new HashSet<Parts>();
         }
 
         public int Id { get; set; }
@@ -18,6 +17,5 @@ namespace SendMyTesla.Models
         public int Index { get; set; }
 
         public ICollection<Orders> Orders { get; set; }
-        public ICollection<Parts> Parts { get; set; }
     }
 }

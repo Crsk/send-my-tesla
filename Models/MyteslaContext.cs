@@ -5,13 +5,13 @@ using SendMyTesla.Config;
 
 namespace SendMyTesla.Models
 {
-    public partial class MyteslaContext : DbContext
+    public partial class MyTeslaContext : DbContext
     {
-        public MyteslaContext()
+        public MyTeslaContext()
         {
         }
 
-        public MyteslaContext(DbContextOptions<MyteslaContext> options)
+        public MyTeslaContext(DbContextOptions<MyTeslaContext> options)
             : base(options)
         {
         }
@@ -46,21 +46,22 @@ namespace SendMyTesla.Models
                     .HasColumnType("int(11)")
                     .HasDefaultValueSql("'0'");
 
-                entity.Property(e => e.Model)
-                    .IsRequired()
-                    .HasColumnName("model")
-                    .HasColumnType("varchar(15)")
-                    .HasDefaultValueSql("''");
                 entity.Property(e => e.Image)
                     .IsRequired()
                     .HasColumnName("image")
                     .HasColumnType("varchar(100)")
                     .HasDefaultValueSql("''");
+
                 entity.Property(e => e.Index)
-                    .IsRequired()
                     .HasColumnName("index")
                     .HasColumnType("int(11)")
                     .HasDefaultValueSql("'0'");
+
+                entity.Property(e => e.Model)
+                    .IsRequired()
+                    .HasColumnName("model")
+                    .HasColumnType("varchar(15)")
+                    .HasDefaultValueSql("''");
             });
 
             modelBuilder.Entity<Clients>(entity =>
@@ -105,6 +106,10 @@ namespace SendMyTesla.Models
                     .HasColumnName("client_id")
                     .HasColumnType("int(11)");
 
+                entity.Property(e => e.DispatchAddress)
+                    .HasColumnName("dispatch_address")
+                    .HasColumnType("varchar(400)");
+
                 entity.HasOne(d => d.Client)
                     .WithMany(p => p.Dispatches)
                     .HasForeignKey(d => d.ClientId)
@@ -128,6 +133,18 @@ namespace SendMyTesla.Models
                     .IsRequired()
                     .HasColumnName("code")
                     .HasColumnType("varchar(20)");
+
+                entity.Property(e => e.Description)
+                    .IsRequired()
+                    .HasColumnName("description")
+                    .HasColumnType("varchar(300)")
+                    .HasDefaultValueSql("''");
+
+                entity.Property(e => e.Image)
+                    .IsRequired()
+                    .HasColumnName("image")
+                    .HasColumnType("varchar(100)")
+                    .HasDefaultValueSql("''");
 
                 entity.Property(e => e.Price)
                     .HasColumnName("price")
@@ -178,41 +195,35 @@ namespace SendMyTesla.Models
             {
                 entity.ToTable("parts");
 
-                entity.HasIndex(e => e.CarId)
-                    .HasName("car_id");
-
                 entity.HasIndex(e => e.OptionId)
                     .HasName("option_id");
+
+                entity.HasIndex(e => e.OrderId)
+                    .HasName("order_id");
 
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
                     .HasColumnType("int(11)");
 
-                entity.Property(e => e.CarId)
-                    .HasColumnName("car_id")
-                    .HasColumnType("int(11)");
-
-                entity.Property(e => e.Name)
-                    .IsRequired()
-                    .HasColumnName("name")
-                    .HasColumnType("varchar(45)")
-                    .HasDefaultValueSql("''");
-
                 entity.Property(e => e.OptionId)
                     .HasColumnName("option_id")
                     .HasColumnType("int(11)");
 
-                entity.HasOne(d => d.Car)
-                    .WithMany(p => p.Parts)
-                    .HasForeignKey(d => d.CarId)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("parts_ibfk_1");
+                entity.Property(e => e.OrderId)
+                    .HasColumnName("order_id")
+                    .HasColumnType("int(11)");
 
                 entity.HasOne(d => d.Option)
                     .WithMany(p => p.Parts)
                     .HasForeignKey(d => d.OptionId)
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("parts_ibfk_2");
+
+                entity.HasOne(d => d.Order)
+                    .WithMany(p => p.Parts)
+                    .HasForeignKey(d => d.OrderId)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("parts_ibfk_1");
             });
         }
     }

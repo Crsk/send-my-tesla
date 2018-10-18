@@ -15,7 +15,7 @@ namespace SendMyTesla.Controllers
         [HttpGet]
         public List<Cars> Get()
         {
-            var db = new MyteslaContext();
+            var db = new MyTeslaContext();
             return db.Cars.ToList().OrderBy(x => x.Index).Reverse().ToList();
         }
 
@@ -23,7 +23,7 @@ namespace SendMyTesla.Controllers
         [HttpGet("{id}")]
         public Cars Get(int id)
         {
-            var db = new MyteslaContext();
+            var db = new MyTeslaContext();
             return db.Cars.ToList().Where(x => x.Id == id).FirstOrDefault();
         }
 
